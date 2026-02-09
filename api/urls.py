@@ -1,9 +1,10 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CarModelsViewSet
+from .views import CategoryViewSet, SubCategoryViewSet
 
 router = DefaultRouter()
-router.register('model', CarModelsViewSet)
+router.register('category', CategoryViewSet)
+router.register('subcategory', SubCategoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

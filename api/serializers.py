@@ -1,8 +1,20 @@
 from rest_framework import serializers
-from .models import CarModels
+from .models import Products, Category, SubCategory
 
 
-class CarModelsSerializer(serializers.ModelSerializer):
+class SubCategorySerializer(serializers.ModelSerializer): 
     class Meta:
-        model = CarModels
+        model = SubCategory
         fields = '__all__'
+
+class CategorySerializer(serializers.ModelSerializer):
+    sub_categories = SubCategorySerializer(many=True, read_only=True)
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+class CategoryDeteilSerializer(serializers.ModelSerializer):
+    sub_categories = SubCategorySerializer(many=True, read_only=True)
+    class Meta:
+        model = Category
+        fields = ('sub_categories',)

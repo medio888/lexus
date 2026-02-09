@@ -1,3 +1,18 @@
 from django.contrib import admin
+from .models import Products, Category, SubCategory
 
 # Register your models here.
+@admin.register(Products)
+class ProductsAdmin(admin.ModelAdmin):  
+    pass
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(SubCategory)        
+class SubCategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+
