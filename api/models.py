@@ -26,7 +26,7 @@ class Products(models.Model):
     gearbox = models.CharField(verbose_name='Gearbox', max_length=255)
     car_body = models.CharField(verbose_name='Car Body', max_length=255)
     drive = models.CharField(verbose_name='Drive', max_length=255)
-    volume = models.DecimalField(verbose_name='Volume', max_digits=4, decimal_places=1)
+    volume = models.CharField(verbose_name='Volume', max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
