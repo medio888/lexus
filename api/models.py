@@ -17,7 +17,6 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
-
 class Products(models.Model):
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products', null=True) 
     model = models.CharField(verbose_name='Model', max_length=255)
