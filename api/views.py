@@ -3,7 +3,7 @@ from .models import Category, SubCategory
 from .serializers import CategorySerializer, SubCategorySerializer, CategoryDeteilSerializer
 
 
-class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
+class CategoryViewSet(viewsets.GenericViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer  
     def get_serializer_class(self):
@@ -11,7 +11,7 @@ class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.C
             return CategoryDeteilSerializer
         return CategorySerializer
 
-class SubCategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
+class SubCategoryViewSet(viewsets.GenericViewSet):
     queryset = SubCategory.objects.all()
     serializer_class = SubCategorySerializer    
 
