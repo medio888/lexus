@@ -21,7 +21,7 @@ class SubCategory(models.Model):
 class Products(models.Model):
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products', null=True) 
     model = models.CharField(verbose_name='Model', max_length=255)
-    price = models.DecimalField(max_digits=12, decimal_places=2)    
+    price = models.CharField(verbose_name='Price', max_length=255, null=True, blank=True)  
     fuel = models.CharField(verbose_name='Fuel', max_length=255)
     gearbox = models.CharField(verbose_name='Gearbox', max_length=255)
     car_body = models.CharField(verbose_name='Car Body', max_length=255)
