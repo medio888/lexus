@@ -1,21 +1,29 @@
 from rest_framework import viewsets, mixins
-from .models import Category, SubCategory
-from .serializers import CategorySerializer, SubCategorySerializer, CategoryDeteilSerializer
+from .models import Category, Division, SubCategory, Products, Footer, Division
+from .serializers import CategorySerializer, SubCategorySerializer, CategoryDetailSerializer, ProductsSerializer, FooterSerializer, DivisionSerializer  
 
 
-class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer  
     def get_serializer_class(self):
         if self.action == 'retrieve':
-            return CategoryDeteilSerializer
+            return CategoryDetailSerializer
         return CategorySerializer
 
-class SubCategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+class SubCategoryViewSet(viewsets.ModelViewSet):
     queryset = SubCategory.objects.all()
     serializer_class = SubCategorySerializer   
     
     
+class FooterViewSet(viewsets.ModelViewSet):
+    queryset = Footer.objects.all()
+    serializer_class = FooterSerializer
+    
+    
+class DivisionViewSet(viewsets.ModelViewSet):
+    queryset = Division.objects.all()
+    serializer_class = DivisionSerializer            
 
 
 

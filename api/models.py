@@ -2,6 +2,7 @@ from django.db import models
 from solo.models import SingletonModel
 
 class Category(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(verbose_name='Category', max_length=255)
 
     def __str__(self):
@@ -9,6 +10,7 @@ class Category(models.Model):
 
 
 class SubCategory(models.Model):
+    id = models.AutoField(primary_key=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='sub_categories')
     name = models.CharField(verbose_name='SubCategory', max_length=255)
     fuel_info = models.CharField(verbose_name='Fuel_info', max_length=255)
@@ -19,6 +21,7 @@ class SubCategory(models.Model):
         return self.name
 
 class Products(models.Model):
+    id = models.AutoField(primary_key=True)
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='products', null=True) 
     model = models.CharField(verbose_name='Model', max_length=255)
     price = models.CharField(verbose_name='Price', max_length=255, null=True, blank=True)  
@@ -33,6 +36,22 @@ class Products(models.Model):
     def __str__(self):
         return self.model
 
+
+
+class Footer(SingletonModel):
+    id = models.AutoField(primary_key=True)
+    departement = models.CharField(verbose_name='Departement', max_length=255, null=True, blank=True)
     
+    def __str__(self):
+        return self.departement
+    
+    
+class Division(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(verbose_name='Division', max_length=255, null=True, blank=True)
+    footer = models.ForeignKey(Footer, on_delete=models.CASCADE, related_name='divisions', null=True)
+    
+    def __str__(self):
+        return self.name    
 
 
